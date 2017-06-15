@@ -1,0 +1,5 @@
+jdquant-core-common/target
+jdquant-core-web/target
+jdquant-core-service/target
+jdquant-core-dao/target
+jdquant-core-domain/target

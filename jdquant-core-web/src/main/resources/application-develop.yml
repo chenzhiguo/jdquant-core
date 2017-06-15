@@ -1,0 +1,28 @@
+######服务器设置######
+server:
+  port: 8080 #启动内嵌tomcat，设置其端口号
+  contextPath: /core #项目在tomcat中的contextPath
+
+######Spring设置######
+spring:
+  aop:
+    auto: true
+  http:
+    encoding:
+        charset: UTF-8
+        enabled: true
+        force: true
+  datasource:
+    url: jdbc:mysql://172.24.7.226:3306/jdquant?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: 1qaz2wsx
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+
+  session:
+    store-type: none
+
+######日志设置######
+logging:
+  path: /export/Logs/jdquant/ #日志文件目录
+  file: ${logging.path}quant-core.log

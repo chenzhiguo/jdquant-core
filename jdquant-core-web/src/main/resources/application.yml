@@ -1,0 +1,10 @@
+# Spring Profiles Active
+spring:
+  profiles:
+    active: develop
+
+#Mybatis Config
+mybatis:
+  mapperLocations: classpath*:mappers/*.xml
+  type-aliases-package: com.jd.quant.core.domain
+  executor-type: batch
