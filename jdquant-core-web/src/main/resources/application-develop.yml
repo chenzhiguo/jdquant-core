@@ -26,3 +26,8 @@ spring:
 logging:
   path: /export/Logs/jdquant/ #日志文件目录
   file: ${logging.path}quant-core.log
+
+######Thrift设置######
+thrift:
+  serverPort: 22006
+  protocol: compact
