@@ -17,19 +17,19 @@
         <dependency>
             <groupId>com.jd.quant.core</groupId>
             <artifactId>jdquant-core-domain</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.jd.quant.core</groupId>
             <artifactId>jdquant-core-dao</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.jd.quant.core</groupId>
             <artifactId>jdquant-core-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
 
     </dependencies>

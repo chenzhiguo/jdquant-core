@@ -1,0 +1,8 @@
+       ______     ____                    __
+      / / __ \   / __ \__  ______ _____  / /_
+ __  / / / / /  / / / / / / / __ `/ __ \/ __/
+/ /_/ / /_/ /  / /_/ / /_/ / /_/ / / / / /_
+\____/_____/   \___\_\__,_/\__,_/_/ /_/\__/
+ :: Spring Boot  ::     ${spring-boot.formatted-version}
+ :: JD Quant     ::      (v0.0.1.SNAPSHOT)
+ :: Official Url ::      https://quant.jd.com

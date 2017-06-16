@@ -3,7 +3,11 @@ spring:
   profiles:
     active: develop
 
-#Mybatis Config
+# Banner Setting
+banner:
+  location: static/banner.txt
+
+# Mybatis Config
 mybatis:
   mapperLocations: classpath*:mappers/*.xml
   type-aliases-package: com.jd.quant.core.domain
