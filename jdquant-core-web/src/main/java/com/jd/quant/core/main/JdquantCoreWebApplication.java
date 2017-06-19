@@ -1,4 +1,4 @@
-package com.jd.quant.core;
+package com.jd.quant.core.main;
 
 import com.jd.quant.core.config.MyBatisConfig;
 import org.springframework.boot.SpringApplication;

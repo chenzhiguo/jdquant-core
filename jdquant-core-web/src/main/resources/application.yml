@@ -1,7 +1,7 @@
 # Spring Profiles Active
 spring:
   profiles:
-    active: develop
+    active: develop  #根据环境改变
 
 # Banner Setting
 banner:

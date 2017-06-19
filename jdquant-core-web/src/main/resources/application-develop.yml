@@ -26,6 +26,7 @@ spring:
 logging:
   path: /export/Logs/jdquant/ #日志文件目录
   file: ${logging.path}quant-core.log
+  level: debug
 
 ######Thrift设置######
 thrift:

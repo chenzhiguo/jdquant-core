@@ -4,5 +4,5 @@
 / /_/ / /_/ /  / /_/ / /_/ / /_/ / / / / /_
 \____/_____/   \___\_\__,_/\__,_/_/ /_/\__/
  :: Spring Boot  ::     ${spring-boot.formatted-version}
- :: JD Quant     ::      (v0.0.1.SNAPSHOT)
+ :: JD Quant     ::      (v0.0.1.SNAPSHOT) ${application.version}
  :: Official Url ::      https://quant.jd.com
