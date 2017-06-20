@@ -3,6 +3,7 @@ package com.jd.quant.core.main;
 import com.jd.quant.core.config.MyBatisConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.context.annotation.Import;
 
 /**
@@ -10,7 +11,7 @@ import org.springframework.context.annotation.Import;
  *
  * @author Zhiguo.Chen
  */
-@Import({MyBatisConfig.class})
+@EnableCircuitBreaker
 @SpringBootApplication(scanBasePackages = {"com.jd.quant.core"})
 public class JdquantCoreWebApplication {
 

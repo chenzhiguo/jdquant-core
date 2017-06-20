@@ -33,7 +33,6 @@ public class IndexController {
     @ResponseBody
     @RequestMapping("addCity")
     public CommonResponse addCity(String cityName) {
-        QuantResultUtils.putLastProfit("aaa", new DayProfit());
         City city = new City();
         city.setCityName(cityName);
         city.setDescription("TEST");
