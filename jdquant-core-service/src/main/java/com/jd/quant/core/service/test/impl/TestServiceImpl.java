@@ -1,6 +1,6 @@
 package com.jd.quant.core.service.test.impl;
 
-import com.jd.quant.core.common.support.CommonResponse;
+import com.jd.quant.core.domain.common.CommonResponse;
 import com.jd.quant.core.common.utils.WebUtil;
 import com.jd.quant.core.dao.TestMapper;
 import com.jd.quant.core.domain.City;

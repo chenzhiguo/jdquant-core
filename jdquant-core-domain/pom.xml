@@ -13,4 +13,11 @@
     <packaging>jar</packaging>
     <name>JDQuant :: domain</name>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.jd.quant.core</groupId>
+            <artifactId>jdquant-core-common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 </project>

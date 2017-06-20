@@ -1,4 +1,4 @@
-package com.jd.quant.core.common.support;
+package com.jd.quant.core.domain.common;
 
 import java.util.ArrayList;
 import java.util.Collection;
