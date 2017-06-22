@@ -1,5 +1,7 @@
 package com.jd.quant.core.domain.profit;
 
+import lombok.Data;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
@@ -9,6 +11,7 @@ import java.util.List;
  *
  * @author Zhiguo.Chen
  */
+@Data
 public class QuantSummary implements Serializable {
 
     //累计收益百分比

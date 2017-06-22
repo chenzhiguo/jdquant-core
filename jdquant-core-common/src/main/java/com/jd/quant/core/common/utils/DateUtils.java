@@ -37,7 +37,7 @@ public class DateUtils {
     private static final ZoneId zone = ZoneId.systemDefault();
 
     public static Date addDay(String date, int day) {
-        Date d = transString2Date(date);
+        Date d = string2Date(date);
         return addDay(d, day);
     }
 
@@ -51,10 +51,6 @@ public class DateUtils {
             e.printStackTrace();
         }
         return gc;
-    }
-
-    public static Date parseDay(String date) {
-        return transString2Date(date);
     }
 
     public static Date parseDate(LocalDateTime dateTime) {
@@ -203,7 +199,13 @@ public class DateUtils {
         return new SimpleDateFormat("yyyyMMdd").format(date);
     }
 
-    public static Date transString2Date(String s) {
+    /**
+     * String转Date类型
+     *
+     * @param s
+     * @return
+     */
+    public static Date string2Date(String s) {
         try {
             if (s.length() == 7)
                 return new SimpleDateFormat("yyyy-MM").parse(s);

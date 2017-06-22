@@ -14,4 +14,12 @@
     <packaging>jar</packaging>
     <name>JDQuant :: common</name>
 
+    <dependencies>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.5</version>
+        </dependency>
+    </dependencies>
+
 </project>

@@ -5,6 +5,7 @@ import com.jd.quant.core.common.support.QuantTaskType;
 import com.jd.quant.core.common.utils.BeanJsonUtil;
 import com.jd.quant.core.common.utils.ComponentContext;
 import com.jd.quant.core.common.utils.DateUtils;
+import com.jd.quant.core.common.utils.FileUtil;
 import com.jd.quant.core.dao.redis.RedisDao;
 import com.jd.quant.core.domain.common.QuantTaskRequest;
 import com.jd.quant.core.domain.position.InfoPacks;
@@ -37,7 +38,7 @@ public class QuantResultUtils {
      */
     static RedisDao redisDao;
 
-    static Map<String, DayProfit> lastProfitResultMap = new HashMap<>();
+//    static Map<String, DayProfit> lastProfitResultMap = new HashMap<>();
 
 //    private static JSSOperateRPC jssOperateRPC;
 
@@ -111,24 +112,32 @@ public class QuantResultUtils {
         return result;
     }
 
-//    public static String putRegressionResult(String pin, Long strategyId, Long requestTime, Integer strategyType, DayProfit dayProfit) {
-//        String key = KeyUtil.regressionResultKey(pin, strategyId, requestTime, strategyType);
-//        try {
-//            String jsonStr = BeanJsonUtil.bean2Json(dayProfit);
+    public static String putRegressionResult(String pin, Long strategyId, Long requestTime, Integer strategyType, DayProfit dayProfit) {
+        String key = KeyUtil.regressionResultKey(pin, strategyId, requestTime, strategyType);
+        try {
+            String jsonStr = BeanJsonUtil.bean2Json(dayProfit);
 //            lastProfitResultMap.put(key, dayProfit);
-//
-//            //TODO 胡彬做参数优化时，结果文件不存储到云平台
-//            if ("p2p_test167".equals(pin)) {
-//                return "Success";
-//            }
-//
-//            String cancelKey = KeyUtil.getCancelTaskKey(pin, strategyId, requestTime, strategyType);
-//            return redisDao.saveToCacheAndFile(pin, key, jsonStr, 600, cancelKey);
-//        } catch (Exception e) {
-//            LOGGER.error("保存任务结果异常：{}, key={}", e.getMessage(), key, e);
-//            return "Error";
-//        }
-//    }
+
+            String cancelKey = KeyUtil.getCancelTaskKey(pin, strategyId, requestTime, strategyType);
+            return saveToCacheAndFile(pin, key, jsonStr, 600, cancelKey);
+        } catch (Exception e) {
+            LOGGER.error("保存任务结果异常：{}, key={}", e.getMessage(), key, e);
+            return "Error";
+        }
+    }
+
+    private static String saveToCacheAndFile(String pin, String key, String jsonStr, int exTime, String cancelKey) {
+        //Redis存储一份结果
+        redisDao.lpush(key, jsonStr, exTime);
+        //本地写一份结果
+        FileUtil.writeResultFile(pin, key, jsonStr);
+        if (redisDao.get(cancelKey) != null) {
+            redisDao.delete(cancelKey);
+            return "cancel";
+        }
+        return "success";
+    }
+
 
     public static boolean clearRegressionResult(String pin, Long strategyId, Long requestTime, Integer strategyType) {
         String key = KeyUtil.regressionResultKey(pin, strategyId, requestTime, strategyType);
@@ -400,9 +409,6 @@ public class QuantResultUtils {
         return null;
     }
 
-    public static DayProfit loadDayProfitFromMap(String key) throws Exception {
-        return lastProfitResultMap.get(key);
-    }
 
     /**
      * 删除缓存的保存DayProfit信息失败对象

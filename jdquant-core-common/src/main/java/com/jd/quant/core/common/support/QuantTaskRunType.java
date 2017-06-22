@@ -7,7 +7,7 @@ package com.jd.quant.core.common.support;
  */
 public enum QuantTaskRunType {
 
-    RUNNING("running"), END("end"), EXCEPTION("exception");
+    RUNNING("running"), END("end"), EXCEPTION("exception"), CANCEL("cancel");
 
     private String state;
 

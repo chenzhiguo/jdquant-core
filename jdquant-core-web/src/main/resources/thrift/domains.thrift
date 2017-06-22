@@ -3,16 +3,16 @@ namespace java com.jd.quant.core.domain.thrift
 
 struct TTransactionParam{
     //默认一个基准，沪深300
-    1:optional  string benchmark = "399300.SZ";
+    1:optional string benchmark = "399300.SZ";
 
     //滑点
-    2:optional  string slippage = "0.002";
+    2:optional double slippage = 0.001;
 
     //手续费
-    3:optional  string commission = "0.00025";
+    3:optional double commission = 0.00025;
 
     //默认印花税
-    4:optional  string taxPercent = "0.001";
+    4:optional double taxPercent = 0.001;
 }
 
 struct TQuantTaskRequest{

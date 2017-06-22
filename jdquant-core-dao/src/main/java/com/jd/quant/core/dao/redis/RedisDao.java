@@ -109,4 +109,9 @@ public class RedisDao {
     public List<String> lrangeAll(String key, int start, int end) {
         return listOperations.range(prefix + key, start, end);
     }
+
+    public void lpush(String key, String value, int exTime) {
+        listOperations.leftPush(prefix + key, value);
+        redisTemplate.expire(prefix + key, exTime, TimeUnit.SECONDS);
+    }
 }

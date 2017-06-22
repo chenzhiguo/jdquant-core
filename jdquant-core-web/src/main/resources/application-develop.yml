@@ -1,7 +1,7 @@
 ######服务器设置######
 server:
   port: 8080 #启动内嵌tomcat，设置其端口号
-  contextPath: /core #项目在tomcat中的contextPath
+  contextPath: / #项目在tomcat中的contextPath
   session:
     timeout: 36000
 
@@ -20,7 +20,6 @@ spring:
     password: 1qaz2wsx
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
-
   redis:
     database: 0
     host: 192.168.99.100
@@ -52,3 +51,12 @@ logging:
 thrift:
   serverPort: 22006
   protocol: compact
+
+######管理端设置######
+management:
+  port: 9090
+  security:
+    enabled: false
+
+result:
+  filePath: /export/Data/result/
