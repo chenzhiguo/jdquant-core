@@ -3,6 +3,7 @@ package com.jd.quant.core.service.task.impl;
 import com.jd.quant.core.domain.common.CommonResponse;
 import com.jd.quant.core.domain.common.QuantTaskRequest;
 import com.jd.quant.core.service.task.QuantTaskService;
+import org.springframework.scheduling.annotation.Async;
 
 /**
  * Regression task handle service
@@ -17,6 +18,7 @@ public class RegressionTaskService implements QuantTaskService {
      * @param taskRequest
      * @return
      */
+    @Async
     @Override
     public CommonResponse saveResultFile(QuantTaskRequest taskRequest) {
         return null;
