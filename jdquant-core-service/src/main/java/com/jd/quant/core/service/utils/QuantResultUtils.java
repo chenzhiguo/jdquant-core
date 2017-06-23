@@ -1,7 +1,6 @@
 package com.jd.quant.core.service.utils;
 
-import com.jd.quant.core.common.support.QuantTaskRunType;
-import com.jd.quant.core.common.support.QuantTaskType;
+import com.jd.quant.core.common.support.QuantTaskConstants;
 import com.jd.quant.core.common.utils.BeanJsonUtil;
 import com.jd.quant.core.common.utils.ComponentContext;
 import com.jd.quant.core.common.utils.DateUtils;
@@ -15,14 +14,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.CollectionUtils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 /**
  * 结果操作工具类
  *
- * @author Zhiguo.Chen <me@chenzhiguo.cn>
+ * @author Zhiguo.Chen
  */
 public class QuantResultUtils {
 
@@ -53,11 +54,8 @@ public class QuantResultUtils {
         String key = KeyUtil.isRunningKey(pin, strategyId, requestTime, strategyType);
 
         String type = redisDao.get(key);
-        if (type != null && type.equals(QuantTaskRunType.RUNNING.getState())) {
-            return true;
-        }
 
-        return false;
+        return type != null && type.equals(QuantTaskConstants.RUN_TYPE_RUNNING);
     }
 
     /**
@@ -72,26 +70,26 @@ public class QuantResultUtils {
         try {
             requestTime = determineRequestTime(strategyType, requestTime);
 
-            int exTime = strategyType.equals(QuantTaskType.SIMULATE) ? 600 : 24 * 3600;
+            int exTime = strategyType.equals(QuantTaskConstants.TASK_TYPE_SIMULATE) ? 600 : 24 * 3600;
             String key = KeyUtil.isRunningKey(pin, strategyId, requestTime, strategyType);
             String value = redisDao.get(key);
-            if (StringUtils.isBlank(value) || !QuantTaskRunType.EXCEPTION.getState().equals(value)) {
-                redisDao.setex(key, QuantTaskRunType.RUNNING.getState(), exTime);
-                LOGGER.info("updateRunningStatus成功！key:{}，exTime：{}，runType：{}", key, exTime, QuantTaskRunType.RUNNING.getState());
+            if (StringUtils.isBlank(value) || !QuantTaskConstants.RUN_TYPE_EXCEPTION.equals(value)) {
+                redisDao.setex(key, QuantTaskConstants.RUN_TYPE_RUNNING, exTime);
+                LOGGER.info("updateRunningStatus成功！key:{}，exTime：{}，runType：{}", key, exTime, QuantTaskConstants.RUN_TYPE_RUNNING);
             }
         } catch (Exception e) {
             LOGGER.error("更新运行状态失败：{}", e.getMessage(), e);
         }
     }
 
-    public static void setRunType(String pin, Long strategyId, Long requestTime, Integer strategyType, QuantTaskRunType runType) {
+    public static void setRunType(String pin, Long strategyId, Long requestTime, Integer strategyType, String runType) {
         try {
             requestTime = determineRequestTime(strategyType, requestTime);
-            int exTime = strategyType.equals(QuantTaskType.SIMULATE.getCode()) ? 600 : 24 * 3600;
+            int exTime = strategyType.equals(QuantTaskConstants.TASK_TYPE_SIMULATE) ? 600 : 24 * 3600;
             String key = KeyUtil.isRunningKey(pin, strategyId, requestTime, strategyType);
             String value = redisDao.get(key);
-            if (StringUtils.isBlank(value) || !QuantTaskRunType.EXCEPTION.getState().equals(value) || !QuantTaskRunType.END.equals(runType)) {
-                redisDao.setex(key, runType.getState(), exTime);
+            if (StringUtils.isBlank(value) || !QuantTaskConstants.RUN_TYPE_EXCEPTION.equals(value) || !QuantTaskConstants.RUN_TYPE_END.equals(runType)) {
+                redisDao.setex(key, runType, exTime);
             }
 
         } catch (Exception e) {
@@ -112,6 +110,16 @@ public class QuantResultUtils {
         return result;
     }
 
+    /**
+     * 存储回测结果
+     *
+     * @param pin
+     * @param strategyId
+     * @param requestTime
+     * @param strategyType
+     * @param dayProfit
+     * @return
+     */
     public static String putRegressionResult(String pin, Long strategyId, Long requestTime, Integer strategyType, DayProfit dayProfit) {
         String key = KeyUtil.regressionResultKey(pin, strategyId, requestTime, strategyType);
         try {
@@ -122,7 +130,7 @@ public class QuantResultUtils {
             return saveToCacheAndFile(pin, key, jsonStr, 600, cancelKey);
         } catch (Exception e) {
             LOGGER.error("保存任务结果异常：{}, key={}", e.getMessage(), key, e);
-            return "Error";
+            return "error";
         }
     }
 
@@ -153,7 +161,7 @@ public class QuantResultUtils {
     public static boolean putErrorResult(String userPin, Long strategyId, Long requestTime, String errorMessage, Integer strategyType) {
         String key = KeyUtil.getErrorResultKey(userPin, strategyId, requestTime);
         try {
-            setRunType(userPin, strategyId, requestTime, strategyType, QuantTaskRunType.EXCEPTION);
+            setRunType(userPin, strategyId, requestTime, strategyType, QuantTaskConstants.RUN_TYPE_EXCEPTION);
             redisDao.setex(key, errorMessage == null ? "NULL" : errorMessage, 3600);
             clearRegressionResult(userPin, strategyId, requestTime, strategyType);
             return true;
@@ -261,12 +269,12 @@ public class QuantResultUtils {
         return resultList;
     }
 
-    /**
-     * 保存到jss
-     *
-     * @param key
-     * @param mergeMinuteProfit
-     */
+//    /**
+//     * 保存到jss
+//     *
+//     * @param key
+//     * @param mergeMinuteProfit
+//     */
 //    public static void flushToJss(String key, Boolean mergeMinuteProfit) {
 //        try {
 //            LOGGER.info("开始保存jss |" + key);
@@ -425,7 +433,7 @@ public class QuantResultUtils {
 
 
     public static Long determineRequestTime(Integer taskType, Long initialRequestTime) {
-        if (taskType.equals(QuantTaskType.SIMULATE.getCode())) {
+        if (taskType.equals(QuantTaskConstants.TASK_TYPE_SIMULATE)) {
             return 0L;
         }
 

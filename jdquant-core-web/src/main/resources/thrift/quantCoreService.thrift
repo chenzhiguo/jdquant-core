@@ -18,11 +18,6 @@ service QuantCoreService{
     domains.TQuantCoreResponse saveResult(1:domains.TQuantSaveResultTaskRequest saveResultRequest);
 
     /**
-    * 保存策略运行结果（回测）：参数为此刻持仓
-    **/
-    domains.TQuantCoreResponse saveResultByInfoPacksForRegression(1:domains.TQuantSaveResultRequest saveResultRequest);
-
-    /**
     * 保存策略运行结果（模拟）：参数为此刻持仓
     **/
     domains.TQuantCoreResponse saveResultByInfoPacksForSimulation(1:domains.TQuantSaveResultRequest saveResultRequest);
