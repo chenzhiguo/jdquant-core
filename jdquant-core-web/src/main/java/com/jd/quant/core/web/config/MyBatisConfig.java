@@ -1,4 +1,4 @@
-package com.jd.quant.core.config;
+package com.jd.quant.core.web.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;

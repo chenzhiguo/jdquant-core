@@ -1,4 +1,4 @@
-package com.jd.quant.core.config;
+package com.jd.quant.core.web.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

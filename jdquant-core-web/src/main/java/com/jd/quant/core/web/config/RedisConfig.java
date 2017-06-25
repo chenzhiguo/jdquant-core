@@ -1,4 +1,4 @@
-package com.jd.quant.core.config;
+package com.jd.quant.core.web.config;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
