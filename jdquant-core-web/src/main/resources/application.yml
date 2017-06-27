@@ -1,5 +1,7 @@
 # Spring Profiles Active
 spring:
+  mvc:
+    static-path-pattern: /static/**
   profiles:
     active: develop  #根据环境改变
 

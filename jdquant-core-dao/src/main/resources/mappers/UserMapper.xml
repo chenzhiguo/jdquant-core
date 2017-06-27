@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jd.quant.core.dao.user.UserMapper">
+
+    <resultMap id="BaseResultMap" type="com.jd.quant.core.domain.user.User">
+        <result column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="real_name" property="realName"/>
+        <result column="enabled" property="enabled"/>
+        <result column="email" property="email"/>
+        <result column="telephone" property="telephone"/>
+        <result column="token" property="token"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <parameterMap id="City" type="com.jd.quant.core.domain.City"/>
+
+    <sql id="Base_Column_List">
+        id, username, password, real_name, enabled, email, telephone, token, create_time
+    </sql>
+
+    <insert id="addUser" parameterType="com.jd.quant.core.domain.user.User">
+        INSERT INTO users(username, password, real_name, enabled, email, telephone, token, create_time)
+        VALUES (#{username}, #{password}, #{realName}, #{enabled}, #{email}, #{telephone}, #{token}, #{createTime})
+    </insert>
+
+    <select id="getUserByUsername" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from users
+        where username = #{username}
+    </select>
+
+</mapper>
