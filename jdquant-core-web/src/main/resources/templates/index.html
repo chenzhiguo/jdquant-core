@@ -1,1 +1,4 @@
-HelloWorld! <a href="/logout">Logout</a>
+HelloWorld!
+<form th:action="@{/logout}" method="post" xmlns:th="http://www.w3.org/1999/xhtml">
+    <input type="submit" value="注销"/>
+</form>

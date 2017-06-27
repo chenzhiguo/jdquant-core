@@ -21,7 +21,7 @@ public class ComponentContext implements ApplicationContextAware {
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) {
-        LOG.info("设置Spring应用上下文");
+        LOG.info("Set Spring Application Context...");
         ComponentContext.applicationContext = applicationContext;
     }
 

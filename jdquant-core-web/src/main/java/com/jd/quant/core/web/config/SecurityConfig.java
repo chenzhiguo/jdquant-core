@@ -11,6 +11,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.RememberMeServices;
+import org.springframework.session.security.web.authentication.SpringSessionRememberMeServices;
 
 import javax.sql.DataSource;
 
@@ -54,18 +56,30 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .logout()
-                .logoutUrl("/logout")
+//                .logoutUrl("/logout")
                 .logoutSuccessUrl("/login?logout")
 //                .logoutSuccessHandler(logoutSuccessHandler)
                 .invalidateHttpSession(true)
 //                .addLogoutHandler(logoutHandler)
-                .deleteCookies("JSESSIONID");
+                .deleteCookies("JSESSIONID")
+                .permitAll()
+                .and()
+                .rememberMe().rememberMeServices(rememberMeServices());
 //                .and()
 //                .csrf().disable();
     }
 
     @Bean
-    public BCryptPasswordEncoder passwordEncoder(){
+    public RememberMeServices rememberMeServices() {
+        SpringSessionRememberMeServices rememberMeServices =
+                new SpringSessionRememberMeServices();
+        // optionally customize
+        rememberMeServices.setAlwaysRemember(true);
+        return rememberMeServices;
+    }
+
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 

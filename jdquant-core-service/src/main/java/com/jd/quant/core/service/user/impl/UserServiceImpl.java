@@ -7,6 +7,7 @@ import com.jd.quant.core.domain.common.CommonResponse;
 import com.jd.quant.core.domain.user.User;
 import com.jd.quant.core.domain.user.UserRole;
 import com.jd.quant.core.service.user.UserService;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRoleMapper userRoleMapper;
 
+    @HystrixCommand
     @Override
     public CommonResponse addUser(User user) {
         CommonResponse commonResponse = CommonResponse.createCommonResponse();

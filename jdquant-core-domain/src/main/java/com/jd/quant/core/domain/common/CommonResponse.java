@@ -1,8 +1,11 @@
 package com.jd.quant.core.domain.common;
 
+import org.springframework.validation.FieldError;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * 通用应答类
@@ -69,6 +72,24 @@ public class CommonResponse extends HashMap<String, Object> {
     public CommonResponse fail(String message) {
         this.put("success", false);
         this.put("message", message);
+        return this;
+    }
+
+    /**
+     * 返回一个包含字段错误信息的错误消息
+     *
+     * @param message
+     * @param errors
+     */
+    public CommonResponse fail(String message, List<FieldError> errors) {
+        this.put("success", false);
+        StringBuilder messageBuilder = new StringBuilder(message);
+        messageBuilder.append("<ul>");
+        for (FieldError fieldError : errors) {
+            messageBuilder.append("<li>").append(fieldError.getDefaultMessage()).append("</li>");
+        }
+        messageBuilder.append("</ul>");
+        this.put("message", messageBuilder.toString());
         return this;
     }
 
