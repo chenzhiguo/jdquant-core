@@ -43,6 +43,8 @@ public class User implements UserDetails {
 
     private Date createTime;
 
+    private Date updateTime;
+
     private Set<GrantedAuthority> authorities;
 
     private boolean accountNonExpired = true;

@@ -17,6 +17,8 @@ public class KeyUtil {
     private static final String SOURCE_CODE = "source";
     public static final String TRANSACTION_STRATEGY = "transaction_strategy";
 
+    private static final String USER_TOKEN = "user_token";
+
     public static String getResultKey(String userPin, Long strategyId, Long version, Integer strategyType) {
         String keyType = SIMULATE_RESULT;
         return userPin + "_" + String.valueOf(strategyId) + "_" + version + "_" + keyType;
@@ -31,17 +33,19 @@ public class KeyUtil {
         String keyType = SIMULATE_INFO;
         return userPin + "_" + String.valueOf(strategyId) + "_" + version + "_" + keyType;
     }
+
     public static String getUniverseKey(String userPin, Long strategyId, Long version, Integer strategyType) {
         String keyType = SIMULATE_UNIVERSE;
         return userPin + "_" + String.valueOf(strategyId) + "_" + version + "_" + keyType;
     }
+
     public static String getStrategyKey(String userPin, Long strategyId, Long version, Integer strategyType) {
         String keyType = SIMULATE_STRATEGY;
         return userPin + "_" + String.valueOf(strategyId) + "_" + version + "_" + keyType;
     }
 
-    public static String isRunningKey(String pin, Long strategyId, Long requestTime, Integer strategyType){
-        return "isRunning_"+pin+"-"+strategyId + "-" + requestTime + "-" + strategyType;
+    public static String isRunningKey(String pin, Long strategyId, Long requestTime, Integer strategyType) {
+        return "isRunning_" + pin + "-" + strategyId + "-" + requestTime + "-" + strategyType;
     }
 
     public static String getTaskLockKey(String pin, Long strategyId, Long requestTime, Integer strategyType) {
@@ -53,8 +57,8 @@ public class KeyUtil {
         return keyType + pin + "-" + strategyId + "-" + requestTime;
     }
 
-    public static String getErrorResultKey(String userPin, Long strategyId, Long requestTime){
-        return "errorkey_"+userPin+"_"+strategyId+"_"+requestTime;
+    public static String getErrorResultKey(String userPin, Long strategyId, Long requestTime) {
+        return "errorkey_" + userPin + "_" + strategyId + "_" + requestTime;
     }
 
     public static String reactorKey(String pin, Long strategyId, Long requestTime, Integer strategyType) {
@@ -63,6 +67,7 @@ public class KeyUtil {
 
     /**
      * 日志的keyu
+     *
      * @param pin
      * @param strategyId
      * @param requestTime
@@ -78,7 +83,7 @@ public class KeyUtil {
     }
 
     public static String getSimulateCancelKey(String userPin, Long strategyId, Integer strategyType) {
-        return "SimulationCanceled_" + userPin + "-" + strategyId+"-"+strategyType;
+        return "SimulationCanceled_" + userPin + "-" + strategyId + "-" + strategyType;
     }
 
     public static String getSourceCodeKey(String userPin, Long strategyId, Integer version) {
@@ -89,15 +94,15 @@ public class KeyUtil {
         return userPin + "_" + strategyId + "_contest_reg_result";
     }
 
-    public static String maxDrawDownKey(String pin, Long strategyId, Long requestTime,String type,Integer strategyType) {
+    public static String maxDrawDownKey(String pin, Long strategyId, Long requestTime, String type, Integer strategyType) {
         return "quant_maxDrawDown_" + pin + "-" + strategyId + "-" + requestTime + "-" + strategyType + "-" + type;
     }
 
-    public static String getCalRiskRedisKey(String pin, Long strategyId,Integer strategyType) {
+    public static String getCalRiskRedisKey(String pin, Long strategyId, Integer strategyType) {
         return "calRisk_redis_" + pin + "-" + strategyId + "-" + strategyType;
     }
 
-    public static String getMaxDrawDownRedisKey(String pin, Long strategyId,Integer strategyType) {
+    public static String getMaxDrawDownRedisKey(String pin, Long strategyId, Integer strategyType) {
         return "maxDrawDown_redis" + pin + "-" + strategyId + "-" + strategyType;
     }
 
@@ -117,22 +122,22 @@ public class KeyUtil {
         return "universeCache_" + userPin + "_" + strategyType + "_" + strategyId + "_" + requestTime;
     }
 
-    public static String getBarraKey(String userPin,Long strategyId,Long resultId, String strategyType) {
+    public static String getBarraKey(String userPin, Long strategyId, Long resultId, String strategyType) {
         String key;
-        if(strategyType.equals("simulationIng")){
-            key = "barra_"+userPin+"_"+strategyId+"_"+strategyType;
-        }else{
-            key = "barra_"+userPin+"_"+strategyId+"_"+resultId+"_"+strategyType;
+        if (strategyType.equals("simulationIng")) {
+            key = "barra_" + userPin + "_" + strategyId + "_" + strategyType;
+        } else {
+            key = "barra_" + userPin + "_" + strategyId + "_" + resultId + "_" + strategyType;
         }
         return key;
     }
 
-    public static String getStarKey(String userPin,Long strategyId,Long resultId, String strategyType) {
+    public static String getStarKey(String userPin, Long strategyId, Long resultId, String strategyType) {
         String key;
-        if(strategyType.equals("simulationIng")){
-            key = "star_"+userPin+"_"+strategyId+"_"+strategyType;
-        }else{
-            key = "star_"+userPin+"_"+strategyId+"_"+resultId+"_"+strategyType;
+        if (strategyType.equals("simulationIng")) {
+            key = "star_" + userPin + "_" + strategyId + "_" + strategyType;
+        } else {
+            key = "star_" + userPin + "_" + strategyId + "_" + resultId + "_" + strategyType;
         }
         return key;
     }
@@ -147,5 +152,9 @@ public class KeyUtil {
 
     public static String getTransactionStrategyKey(String userPin, Long transactionStrategyId) {
         return TRANSACTION_STRATEGY + "_" + userPin + "_" + transactionStrategyId;
+    }
+
+    public static String getUserTokenKey(String username) {
+        return USER_TOKEN + "_" + username;
     }
 }

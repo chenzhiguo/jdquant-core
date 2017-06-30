@@ -4,6 +4,8 @@ import com.jd.quant.core.domain.user.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 
+import java.util.List;
+
 /**
  * User Mapper
  *
@@ -28,4 +30,19 @@ public interface UserMapper {
      * @return
      */
     User getUserByUsername(String username);
+
+    /**
+     * 更新用户信息
+     *
+     * @param user
+     */
+    void update(User user);
+
+    /**
+     * 根据条件获取用户列表
+     *
+     * @param searchCondition
+     * @return
+     */
+    List<User> getUsers(User searchCondition);
 }

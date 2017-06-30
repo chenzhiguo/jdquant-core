@@ -24,7 +24,7 @@ import java.util.UUID;
  *
  * @author Zhiguo.Chen
  */
-public class UuidUtil {
+public class UUIDUtil {
 
     /**
      * 获得UUID的方法

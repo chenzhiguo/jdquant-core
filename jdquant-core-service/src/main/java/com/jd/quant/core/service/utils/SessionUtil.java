@@ -17,11 +17,15 @@ public class SessionUtil {
         authentication = SecurityContextHolder.getContext().getAuthentication();
     }
 
+    public static boolean hasLogin(){
+        return authentication.isAuthenticated();
+    }
+
     public static String getUserName() {
         return authentication.getName();
     }
 
-    public static User getUser() {
+    public static User getCurrentUser() {
         return (User) authentication.getPrincipal();
     }
 
