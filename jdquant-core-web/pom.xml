@@ -122,6 +122,37 @@
 					<fork>true</fork>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.4.14</version>
+				<executions>
+					<execution>
+						<id>docker-build</id>
+						<phase>package</phase>
+						<goals>
+							<goal>build</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<imageName>${docker.imageName}:${project.version}</imageName>
+					<dockerDirectory>${project.basedir}</dockerDirectory>
+					<!--<baseImage>java:latest</baseImage>-->
+					<!--<maintainer>Zhiguo.Chen</maintainer>-->
+					<!--<entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>-->
+					<!--<exposes>-->
+						<!--<expose>8080</expose>-->
+					<!--</exposes>-->
+					<resources>
+						<resource>
+							<targetPath>/</targetPath>
+							<directory>${project.build.directory}</directory>
+							<include>${project.build.finalName}.jar</include>
+						</resource>
+					</resources>
+				</configuration>
+			</plugin>
 		</plugins>
 
 		<resources>
