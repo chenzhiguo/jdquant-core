@@ -1,7 +1,7 @@
 FROM java:latest
 MAINTAINER Zhiguo.Chen<chenzhiguo@jd.com>
 
-VOLUME /tmp /exprot
+VOLUME /exprot
 
 ADD ./target/*.jar /app.jar
 
@@ -16,5 +16,5 @@ ADD ./target/*.jar /app.jar
 #        && cd / && rm -rf /tmp/build
 
 WORKDIR /
-EXPOSE 8080
+EXPOSE 8080 22006
 ENTRYPOINT ["java","-Djava.seurity.egd=file:/dev/./urandom","-jar","/app.jar"]
