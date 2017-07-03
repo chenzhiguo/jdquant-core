@@ -125,7 +125,7 @@
 			<plugin>
 				<groupId>com.spotify</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
-				<version>0.4.14</version>
+				<version>1.0.0</version>
 				<executions>
 					<execution>
 						<id>docker-build</id>
@@ -136,6 +136,8 @@
 					</execution>
 				</executions>
 				<configuration>
+					<!--<dockerHost>https://192.168.99.100:2376</dockerHost>-->
+					<!--<dockerCertPath>/Users/Silence/.docker/machine/machines/default</dockerCertPath>-->
 					<imageName>${docker.imageName}:${project.version}</imageName>
 					<dockerDirectory>${project.basedir}</dockerDirectory>
 					<!--<baseImage>java:latest</baseImage>-->

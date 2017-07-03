@@ -1,7 +1,7 @@
 FROM java:latest
 MAINTAINER Zhiguo.Chen<chenzhiguo@jd.com>
 
-VOLUME /exprot
+VOLUME /export
 
 ADD ./target/*.jar /app.jar
 
