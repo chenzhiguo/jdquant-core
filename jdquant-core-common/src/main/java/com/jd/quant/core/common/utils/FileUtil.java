@@ -320,7 +320,7 @@ public class FileUtil {
         FileInputStream input = new FileInputStream(src);
         FileOutputStream output = new FileOutputStream(dest);
         try {
-            IoUtil.copy(input, output);
+            IOUtil.copy(input, output);
         } finally {
             close(output);
             close(input);
@@ -508,7 +508,7 @@ public class FileUtil {
      * @throws IOException
      */
     public static BufferedReader getReader(String path, String charset) throws IOException {
-        return IoUtil.getReader(new FileInputStream(path), charset);
+        return IOUtil.getReader(new FileInputStream(path), charset);
     }
 
     /**
@@ -549,7 +549,7 @@ public class FileUtil {
         InputStream in = null;
         try {
             in = url.openStream();
-            return IoUtil.getLines(in, charset, collection);
+            return IOUtil.getLines(in, charset, collection);
         } finally {
             close(in);
         }
@@ -678,7 +678,7 @@ public class FileUtil {
         InputStream in = null;
         try {
             in = url.openStream();
-            return IoUtil.getString(in, charset);
+            return IOUtil.getString(in, charset);
         } finally {
             close(in);
         }
@@ -827,7 +827,7 @@ public class FileUtil {
         FileOutputStream out = null;
         try {
             out = new FileOutputStream(dest);
-            IoUtil.copy(in, out);
+            IOUtil.copy(in, out);
         } finally {
             close(out);
         }

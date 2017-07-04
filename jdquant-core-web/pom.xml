@@ -106,11 +106,11 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!--<dependency>-->
-			<!--<groupId>org.springframework.boot</groupId>-->
-			<!--<artifactId>spring-boot-devtools</artifactId>-->
-			<!--<optional>true</optional>-->
-		<!--</dependency>-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -139,7 +139,7 @@
 					<!--<dockerHost>https://192.168.99.100:2376</dockerHost>-->
 					<!--<dockerCertPath>/Users/Silence/.docker/machine/machines/default</dockerCertPath>-->
 					<imageName>${docker.imageName}:${project.version}</imageName>
-					<dockerDirectory>${project.basedir}</dockerDirectory>
+					<dockerDirectory>${project.basedir}/docker</dockerDirectory>
 					<!--<baseImage>java:latest</baseImage>-->
 					<!--<maintainer>Zhiguo.Chen</maintainer>-->
 					<!--<entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>-->

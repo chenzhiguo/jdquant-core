@@ -9,17 +9,20 @@ server:
 spring:
   aop:
     auto: true
+
   http:
     encoding:
         charset: UTF-8
         enabled: true
         force: true
+
   datasource:
     url: jdbc:mysql://172.24.7.226:3306/jdquant?useUnicode=true&characterEncoding=utf8
     username: root
     password: 1qaz2wsx
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
+
   redis:
     database: 0
     host: 172.27.35.1
@@ -37,10 +40,14 @@ spring:
     redis:
       namespace: jdquant-seesion
 
+  thymeleaf:
+    cache: false  #生产环境需要打开提高性能
+
   devtools:
     restart:
       exclude: static/**,public/**
-      enabled: false
+      enabled: true
+#      additional-paths:
 
 ######日志设置######
 logging:

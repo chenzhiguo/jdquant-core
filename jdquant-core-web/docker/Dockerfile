@@ -1,9 +1,10 @@
+#Notice：此Dockerfile依赖于Spotify的docker-maven-plugin执行！如若独自执行，请复制到target目录下执行再docker build命令
 FROM java:latest
 MAINTAINER Zhiguo.Chen<chenzhiguo@jd.com>
 
 VOLUME /export
 
-ADD ./target/*.jar /app.jar
+ADD ./*.jar /app.jar
 
 #RUN cd /tmp/build && mvn -q dependency:resolve
 #

@@ -11,7 +11,7 @@ import java.util.Collection;
 /**
  * IO工具类
  */
-public class IoUtil {
+public class IOUtil {
 
     /**
      * 默认缓存大小
